@@ -1,0 +1,27 @@
+{
+  "name": "hosts-manager",
+  "version": "1.0.0",
+  "description": "Hosts manager written in Javascript using Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelribeiro/hosts-manager.git"
+  },
+  "keywords": [
+    "Electron",
+    "hosts",
+    "manager"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/rafaelribeiro/hosts-manager/issues"
+  },
+  "homepage": "https://github.com/rafaelribeiro/hosts-manager#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  }
+}

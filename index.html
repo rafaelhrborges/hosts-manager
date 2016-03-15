@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+
+    <style type="text/css">
+      .pull-right {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+    <div id="container"></div>
+    <script>
+        'use strict';
+
+        const fs = require('fs');
+        const LineReader = require('./LineReader.js').LineReader;
+
+
+        // fs.readFile('/etc/hosts', 'UTF-8', (err, data) => { 
+        //   console.log(data);
+        // });
+        fs.readFile('/etc/hosts', (err, data) => { 
+          let lineReader = new LineReader(data);
+
+          let container = document.getElementById('container');
+          lineReader.readLines((line)=> {
+            if(line.match(/^(#?\d{3}\.\d{1,3}\.\d{1,3}|\w{2}\d{2}::\d{1})/i)){
+              let lineElem = document.createElement('div');
+              let lineInput = document.createElement('input');
+              let lineLabel = document.createElement('label');
+
+              lineInput.type = 'checkbox';
+              lineInput.classList.add('pull-right');
+
+              lineLabel.innerHTML = line;
+              lineInput.setAttribute('data-line', line);
+              console.log(line);
+              console.log(line.replace(/\s/g, '_'));
+
+              if(!line.match(/^#/i)){
+                lineInput.setAttribute('checked', 'checked');
+              }
+
+              lineLabel.appendChild(lineInput);
+              lineElem.appendChild(lineLabel);
+              container.appendChild(lineElem);
+
+              lineInput.addEventListener('change', (event) => {
+                let checked = event.target.checked;
+                let line = event.target.getAttribute('data-line');
+                fs.readFile('/etc/hosts', 'UTF-8', (err, data) => { 
+                  let result = '';
+                  if(checked) {
+                    result = data.replace('#'+line, line);
+                  }else{
+                    result = data.replace(line, '#'+line);
+                  }
+
+                  fs.writeFile('/etc/hosts', result, (err) => {
+                    console.log(err);
+                  })
+                });
+
+              });
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
