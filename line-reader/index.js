@@ -84,4 +84,4 @@ LineReader.prototype.readLines=function(callback){
   //var s=this.file.slice(this.offset,this.offset+8192);
   //this.reader.readAsArrayBuffer(s);
 }
-if(typeof exports!="undefined")exports.LineReader=LineReader;
+if(typeof module.exports!="undefined")module.exports=LineReader;

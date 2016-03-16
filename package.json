@@ -23,5 +23,9 @@
   "homepage": "https://github.com/rafaelribeiro/hosts-manager#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.36.0"
+  },
+  "dependencies": {
+    "electron-connect": "^0.3.7",
+    "gulp": "^3.9.1"
   }
 }
