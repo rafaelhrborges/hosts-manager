@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/rafaelribeiro/hosts-manager#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.0"
+    "electron-prebuilt": "^0.36.0",
+    "asar": "^0.10.0",
+    "electron-packager": "^5.2.1"
   },
   "dependencies": {
     "electron-connect": "^0.3.7",
